@@ -1,44 +1,8 @@
-#include "TGrafo.h"
+#include "TGrafoR.h"
 #include <fstream>
 #include <iostream>
 using namespace std;
 
-void arquivo(std::string nome) {
-    ifstream arq(nome);
-    int V, A;
-    arq >> V >> A;
-    TGrafo g(V);
-    for (int i = 0; i < A; i++) {
-        int origem, destino;
-        arq >> origem >> destino;
-        g.insereA(origem, destino);
-    }
-    g.show();
-}
-
-TGrafoLista lerGrafoDeArquivo(const std::string& nomeArquivo) {
-    std::ifstream arquivo(nomeArquivo);
-    
-    if (!arquivo.is_open()) {
-        std::cerr << "Erro ao abrir o arquivo." << std::endl;
-        exit(1);
-    }
-    
-    int V, A;
-    arquivo >> V >> A;
-    
-    // Inicializar o grafo com V vértices
-    TGrafoLista grafo(V);
-    
-    int v, w;
-    for (int i = 0; i < A; ++i) {
-        arquivo >> v >> w;
-        grafo.insereA(v, w);
-    }
-    
-    arquivo.close();
-    return grafo;
-}
 
 int main() {
     TGrafoR grafo2(3);

@@ -7,13 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3B6D6F1F2AA0CC8800F81209 /* TGrafoND.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D6F1E2AA0CC8800F81209 /* TGrafoND.cpp */; };
-		3B6D6F212AA0CCA000F81209 /* TGrafoNDR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D6F202AA0CCA000F81209 /* TGrafoNDR.cpp */; };
 		3B9C46162A9E299300FBCC19 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B9C46122A9E299300FBCC19 /* main.cpp */; };
 		3B9C46172A9E299300FBCC19 /* TGrafo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B9C46142A9E299300FBCC19 /* TGrafo.cpp */; };
 		3B9C46182A9E299300FBCC19 /* TGrafoR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B9C46152A9E299300FBCC19 /* TGrafoR.cpp */; };
 		3BC455622AA21E9D006CCD79 /* pilha.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BC4555F2AA21E9D006CCD79 /* pilha.cpp */; };
-		3BC921822AB3429C0096BC76 /* TGrafoLista.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BC921812AB3429C0096BC76 /* TGrafoLista.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,18 +26,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3B6D6F1E2AA0CC8800F81209 /* TGrafoND.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TGrafoND.cpp; sourceTree = "<group>"; };
-		3B6D6F202AA0CCA000F81209 /* TGrafoNDR.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TGrafoNDR.cpp; sourceTree = "<group>"; };
 		3B8CF34C2AB359630096CEBB /* TGrafoR.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TGrafoR.h; sourceTree = "<group>"; };
 		3B9C46082A9E290D00FBCC19 /* Teoria dos Grafos */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Teoria dos Grafos"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B9C46122A9E299300FBCC19 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		3B9C46132A9E299300FBCC19 /* TGrafo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGrafo.h; sourceTree = "<group>"; };
 		3B9C46142A9E299300FBCC19 /* TGrafo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TGrafo.cpp; sourceTree = "<group>"; };
 		3B9C46152A9E299300FBCC19 /* TGrafoR.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TGrafoR.cpp; sourceTree = "<group>"; };
 		3BC4555F2AA21E9D006CCD79 /* pilha.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pilha.cpp; sourceTree = "<group>"; };
 		3BC455602AA21E9D006CCD79 /* pilha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pilha.h; sourceTree = "<group>"; };
 		3BC921802AB342450096BC76 /* grafo.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = grafo.md; sourceTree = "<group>"; };
-		3BC921812AB3429C0096BC76 /* TGrafoLista.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TGrafoLista.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,12 +68,8 @@
 			children = (
 				3B9C46122A9E299300FBCC19 /* main.cpp */,
 				3B9C46142A9E299300FBCC19 /* TGrafo.cpp */,
-				3B9C46132A9E299300FBCC19 /* TGrafo.h */,
 				3B9C46152A9E299300FBCC19 /* TGrafoR.cpp */,
 				3B8CF34C2AB359630096CEBB /* TGrafoR.h */,
-				3B6D6F1E2AA0CC8800F81209 /* TGrafoND.cpp */,
-				3B6D6F202AA0CCA000F81209 /* TGrafoNDR.cpp */,
-				3BC921812AB3429C0096BC76 /* TGrafoLista.cpp */,
 				3BC4555F2AA21E9D006CCD79 /* pilha.cpp */,
 				3BC455602AA21E9D006CCD79 /* pilha.h */,
 				3BC921802AB342450096BC76 /* grafo.md */,
@@ -145,12 +134,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B6D6F212AA0CCA000F81209 /* TGrafoNDR.cpp in Sources */,
 				3B9C46182A9E299300FBCC19 /* TGrafoR.cpp in Sources */,
 				3BC455622AA21E9D006CCD79 /* pilha.cpp in Sources */,
 				3B9C46162A9E299300FBCC19 /* main.cpp in Sources */,
-				3B6D6F1F2AA0CC8800F81209 /* TGrafoND.cpp in Sources */,
-				3BC921822AB3429C0096BC76 /* TGrafoLista.cpp in Sources */,
 				3B9C46172A9E299300FBCC19 /* TGrafo.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
