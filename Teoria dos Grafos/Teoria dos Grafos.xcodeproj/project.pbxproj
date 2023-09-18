@@ -31,6 +31,7 @@
 		3B9C46122A9E299300FBCC19 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		3B9C46142A9E299300FBCC19 /* TGrafo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TGrafo.cpp; sourceTree = "<group>"; };
 		3B9C46152A9E299300FBCC19 /* TGrafoR.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TGrafoR.cpp; sourceTree = "<group>"; };
+		3BC0A4372AB9045B00D570F0 /* TGrafo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TGrafo.h; sourceTree = "<group>"; };
 		3BC4555F2AA21E9D006CCD79 /* pilha.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pilha.cpp; sourceTree = "<group>"; };
 		3BC455602AA21E9D006CCD79 /* pilha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pilha.h; sourceTree = "<group>"; };
 		3BC921802AB342450096BC76 /* grafo.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = grafo.md; sourceTree = "<group>"; };
@@ -68,6 +69,7 @@
 			children = (
 				3B9C46122A9E299300FBCC19 /* main.cpp */,
 				3B9C46142A9E299300FBCC19 /* TGrafo.cpp */,
+				3BC0A4372AB9045B00D570F0 /* TGrafo.h */,
 				3B9C46152A9E299300FBCC19 /* TGrafoR.cpp */,
 				3B8CF34C2AB359630096CEBB /* TGrafoR.h */,
 				3BC4555F2AA21E9D006CCD79 /* pilha.cpp */,
