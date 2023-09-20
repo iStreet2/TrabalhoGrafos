@@ -1,3 +1,4 @@
+#include <iostream>
 //
 //  TGrafoR.h
 //  Teoria dos Grafos
@@ -14,17 +15,22 @@ class TGrafoR {
 private:
     int n;       // quantidade de vertices
     int m;       // quantidade de arestas
-    float **adj; // matriz de adjacencia
     
 public:
+    std::string **adj; // matriz de adjacencia
     TGrafoR(int n);
-    void insereA(int v, int w, float ra);
+    int getN();
+    int getM();
+    void insereA(int v, int w, std::string ra);
     void removeA(int v, int w);
     void show();
     int inDegree(int v);
     int outDegree(int v);
-    void dijkstra(int startVertex);
-    void bellmanFord(int startVertex);
+    bool f_conexo();
+    bool sf_conexo();
+    bool desconexo();
+    int categoria();
+    void FCONEX();
     ~TGrafoR();
 };
 

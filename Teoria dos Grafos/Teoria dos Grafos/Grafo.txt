@@ -1,0 +1,132 @@
+7
+65
+0,Last Common Ancestor
+1,Bay cat ancestor
+2,Marbled Cat
+3,Bornean Bay cat
+4,Asiatic Golden cat
+5,Caracal ancestor
+6,Serval
+7,African Golden cat
+8,Caracal
+9,Ocelot ancestor
+10,10
+11,Ocelot
+12,Margay
+13,13
+14,Pampas cat
+15,Andean cat
+16,Oscila
+17,Guiña (Kodkod)
+18,Geoffrey’s cat
+19,Lynx ancestor
+20,20
+21,Bobcat
+22,Canadian Lynx
+23,Eurasian Lynx
+24,Iberian Lynx
+25,Puma ancestor
+26,26
+27,Cheetah
+28,Jaguarundi
+29,Puma
+30,Leopard cat ancestor
+31,31
+32,Pallas at
+33,33
+34,Rusty-spotted cat
+35,35
+36,36
+37,Flat-headed cat
+38,Fishing cat
+39,Asian Leopard cat
+40,Domestic cat ancestor
+41,41
+42,Jungle cat chaus
+43,43
+44,Black-footed cat nigripes
+45,45
+46,Sand cat margarita
+47,47
+48,Chinese Mountain cat bieti
+49,49
+50,European wildcat silvestris
+51,Moddle Eastern wildcat lybica
+52,African wildcat cafes
+53,Asian wildcat ornata
+54,Felis lybica lybica
+55,Panthera ancestor
+56,56
+57,57
+58,Snow leopard
+59,Tiger
+60,60
+61,Jagua
+62,62
+63,Leopard
+64,Lion
+65
+0 1 "null"
+1 2 "Pardofelis"
+2 3 "null"
+2 4 "null"
+0 5 "Caracal"
+5 6 "null"
+6 7 "null"
+6 8 "null"
+0 9 "Leopardus"
+9 10 "null" 
+10 11 "null"
+10 12 "null"
+9 13 "null"
+13 14 "null"
+13 15 "null"
+13 16 "null"
+16 17 "null"
+16 18 "null"
+0 19 "Lynx"
+19 20 "null"
+20 21 "null"
+20 22 "null"
+22 23 "null"
+22 24 "null"
+0 25 "null"
+25 26 "Puma"
+26 27 "Acinonyx jubatus"
+26 28 "null"
+26 29 "null"
+0 30 "null"
+30 31 "Bergepanzer"
+31 32 "Otocolobus manul"
+31 33 "null"
+33 34 "null"
+33 35 "null"
+35 36 "null"
+36 37 "null"
+36 38 "null"
+36 39 "null"
+0 40 "null"
+40 41 "Felis Genus"
+41 42 "null"
+41 43 "null"
+43 44 "null"
+43 45 "null"
+45 46 "null"
+45 47 "null"
+47 48 "null"
+47 49 "null"
+49 50 "null"
+49 51 "null"
+51 52 "null"
+51 53 "null"
+51 54 "Near Eastern/Anatolian wildcat F. lybica lybica"
+0 55 "null"
+55 56 "Neofelis"
+55 57 "Panthera"
+57 58 "null"
+57 59 "null"
+56 60 "null"
+60 61 "null"
+60 62 "null"
+62 63 "null"
+62 64 "null"

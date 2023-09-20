@@ -1,7 +1,11 @@
 #include "TGrafoR.h"
+#include "pilha.h"
+#include <fstream>
 #include <iostream>
 #include <limits>
-#include "pilha.h"
+#include <queue>
+#include <vector>
+#include <set>
 
 using namespace std;
 
@@ -12,14 +16,14 @@ TGrafoR::TGrafoR(int n) {
     // No in�cio dos tempos n�o h� arestas
     this->m = 0;
     // aloca da matriz do TGrafoR
-    float **adjac = new float *[n];
+    std::string **adjac = new std::string *[n];
     for (int i = 0; i < n; i++)
-        adjac[i] = new float[n];
+        adjac[i] = new std::string[n];
     adj = adjac;
     // Inicia a matriz com zeros
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++)
-            adj[i][j] = std::numeric_limits<float>::infinity();
+            adj[i][j] = "false";
 }
 
 // Destructor, respons�vel por
@@ -28,14 +32,22 @@ TGrafoR::~TGrafoR() {
     n = 0;
     m = 0;
     delete[] * adj;
-    std::cout << "espaço liberado";
+    std::cout << "espaco liberado";
+}
+
+int TGrafoR::getN() {
+    return n;
+}
+
+int TGrafoR::getM() {
+    return m;
 }
 
 // Insere uma aresta no Grafo tal que
 // v � adjacente a w
-void TGrafoR::insereA(int v, int w, float ra) {
+void TGrafoR::insereA(int v, int w, std::string ra) {
     // testa se nao temos a aresta
-    if (adj[v][w] == std::numeric_limits<float>::infinity()) {
+    if (adj[v][w] == "false") {
         adj[v][w] = ra;
         m++; // atualiza qtd arestas
     }
@@ -44,8 +56,8 @@ void TGrafoR::insereA(int v, int w, float ra) {
 // remove uma aresta v->w do Grafo
 void TGrafoR::removeA(int v, int w) {
     // testa se temos a aresta
-    if (adj[v][w] != std::numeric_limits<float>::infinity()) {
-        adj[v][w] = std::numeric_limits<float>::infinity();
+    if (adj[v][w] != "false") {
+        adj[v][w] = "false";
         m--; // atualiza qtd arestas
     }
 }
@@ -59,11 +71,10 @@ void TGrafoR::show() {
     for (int i = 0; i < n; i++) {
         std::cout << "\n";
         for (int w = 0; w < n; w++)
-            if (adj[i][w] != std::numeric_limits<float>::infinity())
+            if (adj[i][w] != "false")
                 std::cout << "Adj[" << i << "," << w << "]= " << adj[i][w] << " ";
             else
-                std::cout << "Adj[" << i << "," << w << "]= ∞"
-                << " ";
+                std::cout << "Adj[" << i << "," << w << "]= false" << " ";
     }
     cout << "\nfim da impressao do grafo." << endl;
 }
@@ -71,7 +82,7 @@ void TGrafoR::show() {
 int TGrafoR::inDegree(int v) {
     int count = 0;
     for (int i = 0; i < n; i++) {
-        if (adj[i][v] != std::numeric_limits<float>::infinity()) {
+        if (adj[i][v] != "false") {
             count++;
         }
     }
@@ -81,96 +92,166 @@ int TGrafoR::inDegree(int v) {
 int TGrafoR::outDegree(int v) {
     int count = 0;
     for (int i = 0; i < n; i++) {
-        if (adj[v][i] != std::numeric_limits<float>::infinity()) {
+        if (adj[v][i] != "false") {
             count++;
         }
     }
     return count;
 }
 
-void TGrafoR::dijkstra(int v) {
-  float *d = new float[n];
-  int *rot = new int[n];
-  Pilha pilha;
+bool TGrafoR::f_conexo() {
+    for (int v = 0; v < n; ++v) {
+        std::vector<bool> visitado(n, false);
+        std::queue<int> q;
+        q.push(v);
+        visitado[v] = true;
+        int cnt = 1;
 
-  for(int i = 0; i < n; i++) {
-    d[i] = numeric_limits<float>::infinity();
-    rot[i] = -1;
-  }
-  
-  d[v] = 0;
-  pilha.push(v);
-
-  while (!pilha.isEmpty()) {
-    int u = pilha.pop();
-
-    for (int w = 0; w < n; w++) {
-      if (adj[u][w] != numeric_limits<float>::infinity()) {
-        float newDist = d[u] + adj[u][w];
-        if (newDist < d[w]) {
-          d[w] = newDist;
-          rot[w] = u;
-          pilha.push(w);
+        while (!q.empty()) {
+            int atual = q.front(); q.pop();
+            for (int i = 0; i < n; ++i) {
+                if (adj[atual][i] != "false" && !visitado[i]) {
+                    q.push(i);
+                    visitado[i] = true;
+                    ++cnt;
+                }
+            }
         }
-      }
+        if (cnt != n) return false;
     }
-  }
-
-  // Exibir os vetores de distâncias e rotas
-  cout << "Vetor de distâncias: ";
-  for (int i = 0; i < n; i++) {
-    cout << d[i] << " ";
-  }
-  cout << endl;
-
-  cout << "Vetor de rotas: ";
-  for (int i = 0; i < n; i++) {
-    cout << rot[i] << " ";
-  }
-  cout << endl;
-
-  delete[] d;
-  delete[] rot;
+    return true;
 }
 
-void TGrafoR::bellmanFord(int v) {
-  float *d = new float[n];
-  int *rot = new int[n];
+bool TGrafoR::sf_conexo() {
+    for (int v = 0; v < n; ++v) {
+        for (int w = 0; w < n; ++w) {
+            if (v == w) continue;
 
-  for(int i = 0; i < n; i++) {
-    d[i] = numeric_limits<float>::infinity();
-    rot[i] = -1;
-  }
-
-  d[v] = 0;
-
-  for (int i = 1; i < n; i++) {
-    for (int u = 0; u < n; u++) {
-      for (int w = 0; w < n; w++) {
-        if (adj[u][w] != numeric_limits<float>::infinity()) {
-          float newDist = d[u] + adj[u][w];
-          if (newDist < d[w]) {
-            d[w] = newDist;
-            rot[w] = u;
-          }
+            std::vector<bool> visitado(n, false);
+            std::queue<int> q;
+            q.push(v);
+            visitado[v] = true;
+            while (!q.empty()) {
+                int atual = q.front(); q.pop();
+                for (int i = 0; i < n; ++i) {
+                    if (adj[atual][i] != "false" && !visitado[i]) {
+                        q.push(i);
+                        visitado[i] = true;
+                    }
+                }
+            }
+            if (!visitado[w]) {
+                
+                visitado = std::vector<bool>(n, false);
+                q.push(w);
+                visitado[w] = true;
+                while (!q.empty()) {
+                    int atual = q.front(); q.pop();
+                    for (int i = 0; i < n; ++i) {
+                        if (adj[atual][i] != "false" && !visitado[i]) {
+                            q.push(i);
+                            visitado[i] = true;
+                        }
+                    }
+                }
+                
+                if (!visitado[v]) {
+                    return false;
+                }
+            }
         }
-      }
     }
-  }
+    return true;
+}
 
-  // Exibir os vetores de distâncias e rotas
-  cout << "Vetor de distâncias: ";
-  for (int i = 0; i < n; i++) {
-    cout << d[i] << " ";
-  }
-  cout << endl;
+bool TGrafoR::desconexo() {
+    std::vector<bool> visitado(n, false);
+    std::queue<int> q;
+    q.push(0);
+    visitado[0] = true;
+    int cnt = 1;
 
-  cout << "Vetor de rotas: ";
-  for (int i = 0; i < n; i++) {
-    cout << rot[i] << " ";
-  }
-  cout << endl;
+    while (!q.empty()) {
+        int atual = q.front(); q.pop();
+        for (int i = 0; i < n; ++i) {
+            if (adj[atual][i] != "false" && !visitado[i]) {
+                q.push(i);
+                visitado[i] = true;
+                ++cnt;
+            }
+        }
+    }
+    return cnt != n;
+}
 
-  delete[] d;
-  delete[] rot;
+int TGrafoR::categoria() {
+if (m == 0) return 0;
+    if (f_conexo()) return 3;
+    if (sf_conexo()) return 2;
+    if (!desconexo()) return 1;
+    return 0;
+}
+
+void TGrafoR::FCONEX() {
+    std::vector<std::set<int>> components; // Guardará as componentes fortemente conexas
+    std::vector<bool> visited(n, false);   // Indica se o vértice já foi visitado
+
+    for (int i = 0; i < n; ++i) {
+        if (!visited[i]) {
+            std::set<int> Rplus = {i};
+            std::set<int> Rminus = {i};
+            std::set<int> W;
+
+            // Fecho Transitivo Direto de s0
+            while (true) {
+                W.clear();
+                for (auto x : Rplus) {
+                    for (int j = 0; j < n; ++j) {
+                        if (adj[x][j] != "false" && !Rplus.count(j)) {
+                            W.insert(j);
+                        }
+                    }
+                }
+                if (W.empty()) break;
+                Rplus.insert(W.begin(), W.end());
+            }
+
+            // Fecho Transitivo Inverso de s0
+            while (true) {
+                W.clear();
+                for (auto x : Rminus) {
+                    for (int j = 0; j < n; ++j) {
+                        if (adj[j][x] != "false" && !Rminus.count(j)) {
+                            W.insert(j);
+                        }
+                    }
+                }
+                if (W.empty()) break;
+                Rminus.insert(W.begin(), W.end());
+            }
+
+            // Encontra FCC de s0
+            std::set<int> FCC;
+            for (auto x : Rplus) {
+                if (Rminus.count(x)) {
+                    FCC.insert(x);
+                    visited[x] = true;
+                }
+            }
+            components.push_back(FCC);
+        }
+    }
+
+    // Exibir as componentes fortemente conexas
+    std::cout << "Componentes Fortemente Conexas: \n";
+    for (int i = 0; i < components.size(); ++i) {
+        std::cout << "W" << (i + 1) << " = {";
+        for (auto it = components[i].begin(); it != components[i].end(); ++it) {
+            std::cout << *it;
+            if (std::next(it) != components[i].end()) {
+                std::cout << ", ";
+            }
+        }
+        std::cout << "}\n";
+    }
 }
