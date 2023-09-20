@@ -263,7 +263,7 @@ if (m == 0) return 0;
     return 0;
 }
 
-void TGrafoR::FCONEX() {
+void TGrafoR::FCONEX() { // Mostra o grafo reduzido
     std::vector<std::set<int>> components; // Guardará as componentes fortemente conexas
     std::vector<bool> visited(n, false);   // Indica se o vértice já foi visitado
 

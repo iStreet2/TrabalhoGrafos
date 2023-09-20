@@ -34,7 +34,7 @@ int main() {
         std::cout << "j) Encerrar a aplicacao." << std::endl;
         std::cout << "Digite sua opcao: ";
         std::cin >> opcao;
-
+        
         switch (opcao) {
             case 'a':
                 lerDados();
@@ -71,7 +71,7 @@ int main() {
                 std::cout << "Opcao invalida!" << std::endl;
                 break;
         }
-
+        
     } while (opcao != 'j');
     return 0;
 }
@@ -82,11 +82,11 @@ void lerDados() {
         std::cerr << "Erro ao abrir o arquivo." << std::endl;
         return;
     }
-
+    
     int tipoGrafo, numVertices, numArestas;
     arquivo >> tipoGrafo;
     arquivo >> numVertices;
-
+    
     g = new TGrafoR(numVertices);
     
     nomes = new std::string[numVertices];
@@ -98,9 +98,9 @@ void lerDados() {
         std::getline(arquivo, rotulo); // Lê o rótulo até o final da linha
         nomes[vertice] = rotulo;
     }
-
+    
     arquivo >> numArestas;
-
+    
     for (int i = 0; i < numArestas; i++) {
         int v, w;
         std::string ra;
@@ -110,33 +110,33 @@ void lerDados() {
         arquivo.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignora até o final da linha
         g->insereA(v, w, ra);
     }
-
+    
     arquivo.close();
     std::cout << "Arquivo lido com sucesso!" << std::endl;
 }
 
 void gravarDados() {
-     std::ofstream arquivo("Grafo2.txt");
+    std::ofstream arquivo("Grafo2.txt");
     if (!arquivo.is_open()) {
         std::cerr << "Erro ao abrir o arquivo para escrita." << std::endl;
         return;
     }
-
+    
     int numVertices = g->getN();
     int numArestas = g->getM();
-
+    
     // Escrevendo tipo do grafo (no seu exemplo era 7) e o número de vértices
     arquivo << 7 << std::endl;
     arquivo << numVertices << std::endl;
-
+    
     // Escrevendo vértices e seus rótulos
     for (int i = 0; i < numVertices; i++) {
         arquivo << i << "," << nomes[i] << std::endl;
     }
-
+    
     // Escrevendo número de arestas
     arquivo << numArestas << std::endl;
-
+    
     // Escrevendo arestas
     // Escrevendo arestas na matriz de adjacências
     for (int i = 0; i < numVertices; i++) {
@@ -146,7 +146,7 @@ void gravarDados() {
             }
         }
     }
-
+    
     arquivo.close();
     std::cout << "Grafo salvo com sucesso no arquivo!" << std::endl;
 }
@@ -221,14 +221,26 @@ void removerAresta() {
 }
 
 void mostrarConteudoArquivo() {
+    std::ifstream arquivo("Grafo.txt"); // Abre o arquivo para leitura
+    if (!arquivo.is_open()) {
+        std::cout << "Erro ao abrir o arquivo." << std::endl;
+        return;
+    }
     
+    std::string linha;
+    while (std::getline(arquivo, linha)) { // Lê uma linha do arquivo
+        std::cout << linha << std::endl; // Exibe a linha
+    }
+    
+    arquivo.close(); // Fecha o arquivo
 }
+
 
 void mostrarGrafo() {
     int numVertices = g->getN();
     for (int i = 0; i < numVertices; i++) {
         std::cout << "Vertice " << nomes[i] << ":" << std::endl;
-
+        
         for (int j = 0; j < numVertices; j++) {
             if (g->adj[i][j] != "false") {  // Se existe aresta entre os vértices i e j
                 std::cout << "- Aresta para " << nomes[j] << ": " << g->adj[i][j] << std::endl;
@@ -239,5 +251,19 @@ void mostrarGrafo() {
 }
 
 void apresentarConexidade() {
-    
+    cout << "A conexidade do gráfo é: ";
+    switch (g->categoria()) {
+        case 3:
+            cout << "Fortemente Conexo! Categoria 3" << endl;
+            break;
+        case 2:
+            cout << "Semi Fortemente Conexo! Categoria 2" << endl;
+            break;
+        case 1:
+            cout << "Desconexo! Categoria 1" << endl;
+            break;
+        default:
+            break;
+    }
+    g->FCONEX();
 }
