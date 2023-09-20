@@ -80,10 +80,10 @@ void TGrafoR::insereV(int v) {
 
         // Definir os novos elementos para "∞"
         for (int i = 0; i < n + 1; i++) {
-            adjac[i][n] = "∞";
-            adjac[n][i] = "∞";
+            adjac[i][n] = "false";
+            adjac[n][i] = "false";
         }
-        adjac[n][n] = "∞";
+        adjac[n][n] = "false";
 
         // Liberar a memória da matriz antiga
         for (int i = 0; i < n; i++) {
@@ -96,6 +96,7 @@ void TGrafoR::insereV(int v) {
         this->n++;
     }
 }
+
 
 // Apresenta o Grafo contendo
 // n�mero de v�rtices, arestas

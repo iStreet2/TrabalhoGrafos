@@ -153,10 +153,21 @@ void gravarDados() {
 
 void inserirVertice() {
     cout << "Qual o nome do vértice que deseja inserir? ";
-    int nome;
+    string nome;
     cin >> nome;
-    nomes[g->getN()+1] = nome; //adicionar o nome novo no vetor de nomes
-    g->insereV(g->getN()+1);
+    // Inserir o novo vértice no grafo
+    g->insereV(g->getN() + 1);
+    
+    // Redimensionar o vetor de nomes
+    string* novoNomes = new string[g->getN()]; // o novo tamanho é g->getN()
+    for (int i = 0; i < g->getN() - 1; ++i) {  // copiar os nomes antigos
+        novoNomes[i] = nomes[i];
+    }
+    novoNomes[g->getN() - 1] = nome; // inserir o novo nome na última posição
+    
+    delete[] nomes; // liberar memória antiga
+    nomes = novoNomes; // atualizar o ponteiro
+    
     cout << "Vértice inserido com sucesso!" << endl;
 }
 
