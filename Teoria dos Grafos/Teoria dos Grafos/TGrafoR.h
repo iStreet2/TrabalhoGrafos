@@ -24,6 +24,7 @@ public:
     void insereA(int v, int w, std::string ra);
     void removeA(int v, int w);
     void insereV(int v);
+    void removeV(int v);
     void show();
     int inDegree(int v);
     int outDegree(int v);

@@ -186,6 +186,26 @@ void inserirAresta() {
 }
 
 void removerVertice() {
+    bool naoExiste = true;
+    while (naoExiste){
+        cout << "Digite o nome do vértice que deseja remover: ";
+        string nome;
+        cin >> nome;
+        
+        for(int i = 0; i < g->getN(); i++){
+            if(nomes[i] == nome){
+                g->removeV(i);
+                naoExiste = false;
+                break;
+            }
+        }
+        if (naoExiste){
+            cout << "O Vértice escolhido não existe! Tente novamente: ";
+        }
+        else{
+            cout << "Vértice " << nome << " removido com sucesso!" << endl;
+        }
+    }
     
 }
 
