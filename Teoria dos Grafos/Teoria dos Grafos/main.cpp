@@ -19,7 +19,7 @@ void apresentarConexidade();
 
 int main() {
     char opcao;
-
+    
     do {
         std::cout << "\nMenu:" << std::endl;
         std::cout << "a) Ler dados do arquivo grafo.txt;" << std::endl;
@@ -152,7 +152,12 @@ void gravarDados() {
 }
 
 void inserirVertice() {
-    
+    cout << "Qual o nome do vértice que deseja inserir? ";
+    int nome;
+    cin >> nome;
+    nomes[g->getN()+1] = nome; //adicionar o nome novo no vetor de nomes
+    g->insereV(g->getN()+1);
+    cout << "Vértice inserido com sucesso!" << endl;
 }
 
 void inserirAresta() {

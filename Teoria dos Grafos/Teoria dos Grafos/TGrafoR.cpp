@@ -61,6 +61,41 @@ void TGrafoR::removeA(int v, int w) {
         m--; // atualiza qtd arestas
     }
 }
+void TGrafoR::insereV(int v) {
+    if (v <= n) {
+        cout << "Vértice já existe!";
+    } else {
+        // Alocar uma matriz nova com um vértice a mais
+        std::string **adjac = new std::string *[n + 1];
+        for (int i = 0; i < n + 1; i++) {
+            adjac[i] = new std::string[n + 1];
+        }
+
+        // Copiar a matriz antiga para a nova
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                adjac[i][j] = adj[i][j];
+            }
+        }
+
+        // Definir os novos elementos para "∞"
+        for (int i = 0; i < n + 1; i++) {
+            adjac[i][n] = "∞";
+            adjac[n][i] = "∞";
+        }
+        adjac[n][n] = "∞";
+
+        // Liberar a memória da matriz antiga
+        for (int i = 0; i < n; i++) {
+            delete[] adj[i];
+        }
+        delete[] adj;
+
+        // Atualizar o atributo adj e n
+        this->adj = adjac;
+        this->n++;
+    }
+}
 
 // Apresenta o Grafo contendo
 // n�mero de v�rtices, arestas
