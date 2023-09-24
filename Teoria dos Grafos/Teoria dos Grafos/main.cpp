@@ -260,10 +260,14 @@ void apresentarConexidade() {
             cout << "Semi Fortemente Conexo! Categoria 2" << endl;
             break;
         case 1:
-            cout << "Desconexo! Categoria 1" << endl;
+            cout << "Simplismente Conexo! Categoria 1" << endl;
             break;
+        case 0:
+            cout << "Desconexo! Categoria 0" << endl;
+            break;
+            
         default:
-            break;
+            cout << endl;
     }
     g->FCONEX();
 }
