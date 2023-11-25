@@ -17,8 +17,8 @@
 14,Pampas cat
 15,Andean cat
 16,Oscila
-17,Guiña (Kodkod)
-18,Geoffrey’s cat
+17,Guina (Kodkod)
+18,Geoffreys cat
 19,Lynx ancestor
 20,20
 21,Bobcat
@@ -61,7 +61,7 @@
 58,Snow leopard
 59,Tiger
 60,60
-61,Jagua
+61,Jaguar
 62,62
 63,Leopard
 64,Lion

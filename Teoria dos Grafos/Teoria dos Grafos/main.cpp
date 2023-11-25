@@ -16,12 +16,16 @@ void removerAresta();
 void mostrarConteudoArquivo();
 void mostrarGrafo();
 void apresentarConexidade();
+void grausVertives();
+void euleriano();
+void coloracao();
 
 int main() {
     char opcao;
     
     do {
-        std::cout << "\nMenu:" << std::endl;
+        std::cout << "\n || Arvore Evolutiva dos Gatos ||" << std::endl;
+        std::cout << "Menu:" << std::endl;
         std::cout << "a) Ler dados do arquivo grafo.txt;" << std::endl;
         std::cout << "b) Gravar dados no arquivo grafo.txt;" << std::endl;
         std::cout << "c) Inserir vertice;" << std::endl;
@@ -31,9 +35,13 @@ int main() {
         std::cout << "g) Mostrar conteudo do arquivo;" << std::endl;
         std::cout << "h) Mostrar grafo;" << std::endl;
         std::cout << "i) Apresentar a conexidade do grafo e o reduzido;" << std::endl;
-        std::cout << "j) Encerrar a aplicacao." << std::endl;
+        std::cout << "j) Mostrar grau dos vertices." << std::endl;
+        std::cout << "k) Verificar grafo euleriano." << std::endl;
+        std::cout << "l) Coloracao dos vertices." << std::endl;
+        std::cout << "m) Encerrar a aplicacao." << std::endl;
         std::cout << "Digite sua opcao: ";
         std::cin >> opcao;
+        std::cout << std::endl;
         
         switch (opcao) {
             case 'a':
@@ -64,6 +72,15 @@ int main() {
                 apresentarConexidade();
                 break;
             case 'j':
+                grausVertives();
+                break;
+            case 'k':
+                euleriano();
+                break;
+            case 'l':
+                coloracao();
+                break;
+            case 'm':
                 std::cout << "Encerrando aplicacao..." << std::endl;
                 delete g;
                 break;
@@ -72,7 +89,7 @@ int main() {
                 break;
         }
         
-    } while (opcao != 'j');
+    } while (opcao != 'm');
     return 0;
 }
 
@@ -239,11 +256,11 @@ void mostrarConteudoArquivo() {
 void mostrarGrafo() {
     int numVertices = g->getN();
     for (int i = 0; i < numVertices; i++) {
-        std::cout << "Vertice " << nomes[i] << ":" << std::endl;
+        std::cout << "Vertice " << nomes[i] << "(" << i << ")" << ":" << std::endl;
         
         for (int j = 0; j < numVertices; j++) {
             if (g->adj[i][j] != "false") {  // Se existe aresta entre os vértices i e j
-                std::cout << "- Aresta para " << nomes[j] << ": " << g->adj[i][j] << std::endl;
+                std::cout << "- Aresta para " << nomes[j] << "(" << j << ")" << ": " << g->adj[i][j] << std::endl;
             }
         }
         std::cout << std::endl;
@@ -270,4 +287,27 @@ void apresentarConexidade() {
             cout << endl;
     }
     g->FCONEX();
+}
+
+void grausVertives() {
+    int numVertices = g->getN();
+    for (int i = 0; i < numVertices; i++) {
+        cout << "Vertice " << nomes[i] << ":" << std::endl;
+        cout << "- Grau de entrada: " << g->inDegree(i) << std::endl;
+        cout << "- Grau de saida: " << g->outDegree(i) << std::endl;
+        cout << std::endl;
+    }
+}
+
+void euleriano() {
+    if (g->euleriano()) {
+        cout << "O grafo eh euleriano!" << endl;
+    }
+    else {
+        cout << "O grafo nao eh euleriano!" << endl;
+    }
+}
+
+void coloracao() {
+    g->coloracaoClasses();
 }

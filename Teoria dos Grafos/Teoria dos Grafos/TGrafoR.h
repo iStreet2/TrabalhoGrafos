@@ -1,23 +1,15 @@
 #include <iostream>
-//
-//  TGrafoR.h
-//  Teoria dos Grafos
-//
-//  Created by Gabriel Vicentin Negro on 14/09/23.
-//
-
+#include <vector>
 #ifndef TGrafoR_h
 #define TGrafoR_h
 
-
-
 class TGrafoR {
 private:
-    int n;       // quantidade de vertices
-    int m;       // quantidade de arestas
+    int n;
+    int m;
     
 public:
-    std::string **adj; // matriz de adjacencia
+    std::string **adj;
     TGrafoR(int n);
     int getN();
     int getM();
@@ -33,7 +25,10 @@ public:
     bool desconexo();
     int categoria();
     void FCONEX();
+    bool euleriano();
+    void coloracaoClasses();
+    std::vector<int> obterVizinhos(int v);
     ~TGrafoR();
 };
 
-#endif /* TGrafoR_h */
+#endif 

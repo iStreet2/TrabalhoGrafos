@@ -9,25 +9,18 @@
 
 using namespace std;
 
-// Construtor do TGrafoR, respons�vel por
-// Criar a matriz de adjac�ncia v x v do Grafo
 TGrafoR::TGrafoR(int n) {
     this->n = n;
-    // No in�cio dos tempos n�o h� arestas
     this->m = 0;
-    // aloca da matriz do TGrafoR
     std::string **adjac = new std::string *[n];
     for (int i = 0; i < n; i++)
         adjac[i] = new std::string[n];
     adj = adjac;
-    // Inicia a matriz com zeros
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++)
             adj[i][j] = "false";
 }
 
-// Destructor, respons�vel por
-// liberar a mem�ria alocada para a matriz
 TGrafoR::~TGrafoR() {
     n = 0;
     m = 0;
@@ -43,12 +36,15 @@ int TGrafoR::getM() {
     return m;
 }
 
-// Insere uma aresta no Grafo tal que
-// v � adjacente a w
 void TGrafoR::insereA(int v, int w, std::string ra) {
     // testa se nao temos a aresta
     if (adj[v][w] == "false") {
-        adj[v][w] = ra;
+        if (ra == "null"){
+            adj[v][w] = "Sem rotulo";
+        }
+        else{
+            adj[v][w] = ra;
+        }
         m++; // atualiza qtd arestas
     }
 }
@@ -324,5 +320,76 @@ void TGrafoR::FCONEX() { // Mostra o grafo reduzido
             }
         }
         std::cout << "}\n";
+    }
+}
+
+bool TGrafoR::euleriano() {
+    if (!f_conexo()) {
+        return false; // Não é Euleriano se não for fortemente conexo
+    }
+    for (int v = 0; v < n; ++v) {
+        if (inDegree(v) != outDegree(v)) {
+            return false; // Não é Euleriano se o grau de entrada for diferente do grau de saída
+        }
+    }
+    return true; // É Euleriano se todas as condições acima forem satisfeitas
+}
+
+std::vector<int> TGrafoR::obterVizinhos(int v) {
+    std::vector<int> vizinhos;
+    for (int w = 0; w < n; w++) {
+        if (adj[v][w] != "false") { 
+            vizinhos.push_back(w);
+        }
+    }
+    for (int w = 0; w < n; w++) {
+        if (adj[w][v] != "false") { 
+            vizinhos.push_back(w);
+        }
+    }
+    return vizinhos;
+}
+
+void TGrafoR::coloracaoClasses() {
+    std::vector<int> cores(n, -1);
+    int k = 0;
+    std::set<int> verticesNaoColoridos;
+    for (int i = 0; i < n; i++) {
+        verticesNaoColoridos.insert(i);
+    }
+    while (!verticesNaoColoridos.empty()) {
+        std::set<int> verticesAtuais(verticesNaoColoridos);
+        for (int v : verticesAtuais) {
+            std::vector<int> vizinhos = obterVizinhos(v);
+            bool podeColorir = true;
+            for (int vizinho : vizinhos) {
+                if (cores[vizinho] == k) {
+                    podeColorir = false;
+                    break;
+                }
+            }
+            if (podeColorir) {
+                cores[v] = k;
+                verticesNaoColoridos.erase(v);
+            }
+        }
+        k++;
+    }
+    for (int i = 0; i < n; i++) {
+        int ve = 0;
+        for (int j = 0; j < n; j++) {
+            if (cores[j] == i) {
+                ve++;
+            }
+        }
+        if (ve != 0){
+            std::cout << "Cor " << i << " eh atribuida aos vertices: ";
+            for (int j = 0; j < n; j++) {
+                if (cores[j] == i) {
+                    std::cout << j << " ";
+                }
+            }
+            std::cout << std::endl;
+        }
     }
 }
